@@ -31,3 +31,51 @@ body {
     text-wrap: balance;
   }
 }
+.pokemon-list {
+  text-align: center;
+  padding: 20px;
+}
+
+.pokemon-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pokemon-card {
+  background-color: #333;
+  color: white;
+  border-radius: 8px;
+  margin: 10px;
+  padding: 20px;
+  width: 150px;
+  text-align: center;
+}
+
+.pokemon-card img {
+  width: 100px;
+  height: 100px;
+}
+
+.pokemon-detail {
+  text-align: center;
+  padding: 20px;
+}
+
+.pokemon-detail img {
+  width: 150px;
+  height: 150px;
+}
+
+.pokemon-detail button {
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.pokemon-detail button:hover {
+  background-color: #005bb5;
+}
