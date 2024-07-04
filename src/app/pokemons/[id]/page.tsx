@@ -1,41 +1,45 @@
 import React from "react";
-import axios from "axios";
+import Image from "next/image";
+import { Pokemon } from "@/Types/pokemon";
+import Link from "next/link";
 
-type Pokemon = {
-  id: number;
-  name: string;
-  korean_name: string;
-  height: number;
-  weight: number;
-  sprites: { front_default: string };
-  types: { type: { name: string; korean_name: string } }[];
-  abilities: { ability: { name: string; korean_name: string } }[];
-  moves: { move: { name: string; korean_name: string } }[];
+const fetchPokemonData = async (id: string) => {
+  const apiUrl = "http://localhost:3000";
+  const response = await fetch(`${apiUrl}/api/pokemons/${id}`);
+  return response.json();
 };
 
 const PokemonDetail = async ({ params }: { params: { id: string } }) => {
-  const response = await axios.get(
-    `http://localhost:3000/api/pokemons/${params.id}`
-  );
-  const pokemon: Pokemon = response.data;
+  const pokemonData: Pokemon = await fetchPokemonData(params.id);
 
   return (
-    <div className="pokemon-detail">
-      <h1>{pokemon.korean_name}</h1>
-      <p>No. {pokemon.id.toString().padStart(4, "0")}</p>
-      <img src={pokemon.sprites.front_default} alt={pokemon.name} />
-      <p>이름: {pokemon.korean_name}</p>
+    <div className="item-center text-lg">
+      <h1>{pokemonData.korean_name}</h1>
+      <p>No. {pokemonData.id.toString().padStart(4, "0")}</p>
+      <Image
+        src={pokemonData.sprites.front_default}
+        alt={pokemonData.name}
+        width={150}
+        height={150}
+        className="m-auto"
+      />
+      <p>이름: {pokemonData.korean_name}</p>
       <p>
-        키: {pokemon.height / 10} m, 몸무게: {pokemon.weight / 10} kg
+        키: {pokemonData.height / 10} m, 몸무게: {pokemonData.weight / 10} kg
       </p>
-      <p>타입: {pokemon.types.map((t) => t.type.korean_name).join(", ")}</p>
+      <p>타입: {pokemonData.types.map((t) => t.type.korean_name).join(", ")}</p>
       <p>기술:</p>
       <ul>
-        {pokemon.moves.map((m) => (
+        {pokemonData.moves.map((m) => (
           <li key={m.move.name}>{m.move.korean_name}</li>
         ))}
       </ul>
-      <button onClick={() => window.history.back()}>뒤로 가기</button>
+      <Link
+        href="/"
+        className="bg-[#333333] hover:bg-blue-700 text-white border-none px-4 py-2 mt-5 cursor-pointer"
+      >
+        뒤로 가기
+      </Link>
     </div>
   );
 };

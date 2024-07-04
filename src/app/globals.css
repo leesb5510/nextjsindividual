@@ -2,35 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
 .pokemon-list {
   text-align: center;
   padding: 20px;
@@ -40,42 +11,4 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-}
-
-.pokemon-card {
-  background-color: #333;
-  color: white;
-  border-radius: 8px;
-  margin: 10px;
-  padding: 20px;
-  width: 150px;
-  text-align: center;
-}
-
-.pokemon-card img {
-  width: 100px;
-  height: 100px;
-}
-
-.pokemon-detail {
-  text-align: center;
-  padding: 20px;
-}
-
-.pokemon-detail img {
-  width: 150px;
-  height: 150px;
-}
-
-.pokemon-detail button {
-  background-color: #0070f3;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-.pokemon-detail button:hover {
-  background-color: #005bb5;
 }
